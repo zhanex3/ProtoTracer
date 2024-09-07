@@ -2,17 +2,16 @@
 This project is a real-time 3D rendering and animation engine designed for use on the Teensy 4.0. It supports 64x32 HUB75 panels, as well as a custom panel design based on WS2812b LEDs.
 
 Before startint this project, it is _highly_ recommended that you have experience with other microcontroller projects first. This is not a simple or easy project to complete, and support can only be provided for issues with the base project, not with your specific setup. If you are looking for a simple, easy solution, please consider:
-- Huidu WF-1
+- Hudu WF-1
   - 🗸 RGB, works with HUB75 panels
   - 🗸 Easy Wi-Fi configuration, quick setup with an app
-  - ❌ Only shows static images, GIFs, and slideshows
-  - ❌ Can't react to things like buttons or sensors
+  - ❌ Not interactive, only shows static images
 - MAX7219-based Protogen Designs
   - 🗸 Very cheap, readily available on Amazon / alternatives
-  - 🗸 Can use an Arduino Nano or similar as a controller
+  - 🗸 Uses an Arduino Nano as a controller
   - 🗸 Interactive (depending on the controller firmware)
   - 🗸 Uses less power than HUB75-based designs
-  - ❌ Single color, pixels can only be on or off
+  - ❌ Single color, pixels can only be on or off.
   - ❌ Lots of soldering required to connect the panels together
   
 # FREQUENTLY ASKED QUESTIONS

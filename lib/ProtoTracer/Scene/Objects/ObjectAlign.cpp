@@ -139,9 +139,6 @@ float ObjectAlign::GetObjectPlanarityRatio(Object3D** objs, uint8_t numObjects) 
     }
 
     diffSum = diffSum / totalVertices;
-    
-    // Check for null rotation
-    if (planeOrientation.RotateVector(Vector3D(0.0f, 1.0f, 0.0f)).CalculateEuclideanDistance(Vector3D(0.0f, 1.0f, 0.0f)) < 0.01f) return 1.0f;
 
     // Inverse of difference in scale of object in reference to best fit plane orientation. 0.0f for a sphere -> 1.0f for a plane
     return 1.0f - 1.0f / (diffSum / Mathematics::Min(diffSum.X, diffSum.Y, diffSum.Z)).AverageHighestTwoComponents();
@@ -241,7 +238,13 @@ Quaternion ObjectAlign::GetPlaneOrientation(Object3D** objs, uint8_t numObjects,
 
     normal = normal.UnitSphere();
 
-    return Rotation(Vector3D(0.0f, 0.0f, 1.0f), normal).GetQuaternion() * Rotation(EulerAngles(Vector3D(0.0f, 0.0f, offsetPlaneAngle), EulerConstants::EulerOrderXYZS)).GetQuaternion();
+    Serial.print(dir.ToString()); Serial.print('\t');
+    Serial.print(xD); Serial.print('\t');
+    Serial.print(yD); Serial.print('\t');
+    Serial.print(zD); Serial.print('\t');
+    Serial.print(Rotation(Vector3D(0.0f, 0.0f, 1.0f), dir).GetEulerAngles(EulerConstants::EulerOrderXYZS).Angles.ToString()); Serial.print('\n'); Serial.print('\n');
+
+    return Rotation(Vector3D(0.0f, 0.0f, 1.0f), dir).GetQuaternion() * Rotation(EulerAngles(Vector3D(0.0f, 0.0f, offsetPlaneAngle), EulerConstants::EulerOrderXYZS)).GetQuaternion();
 }
 
 ObjectAlign::ObjectAlign(Vector2D camMin, Vector2D camMax, Quaternion targetOrientation) {

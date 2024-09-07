@@ -233,6 +233,7 @@ void ProtogenProject::AlignObjectFace(Object3D* obj, float rotation, float margi
     objA.SetEdgeMargin(margin);
     objA.SetMirrorX(mirror);
     objA.AlignObject(obj);
+    objA.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectsFace(Object3D** objects, uint8_t objectCount, float rotation, float margin, bool mirror){
@@ -240,6 +241,7 @@ void ProtogenProject::AlignObjectsFace(Object3D** objects, uint8_t objectCount, 
     objA.SetEdgeMargin(margin);
     objA.SetMirrorX(mirror);
     objA.AlignObjects(objects, objectCount);
+    objA.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectNoScaleFace(Object3D* obj, float rotation, float margin, bool mirror){
@@ -247,6 +249,7 @@ void ProtogenProject::AlignObjectNoScaleFace(Object3D* obj, float rotation, floa
     objA.SetEdgeMargin(margin);
     objA.SetMirrorX(mirror);
     objA.AlignObjectNoScale(obj);
+    objA.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectsNoScaleFace(Object3D** objects, uint8_t objectCount, float rotation, float margin, bool mirror){
@@ -254,6 +257,7 @@ void ProtogenProject::AlignObjectsNoScaleFace(Object3D** objects, uint8_t object
     objA.SetEdgeMargin(margin);
     objA.SetMirrorX(mirror);
     objA.AlignObjectsNoScale(objects, objectCount);
+    objA.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectRear(Object3D* obj, float rotation, float margin, bool mirror){
@@ -261,6 +265,7 @@ void ProtogenProject::AlignObjectRear(Object3D* obj, float rotation, float margi
     objARear.SetEdgeMargin(margin);
     objARear.SetMirrorX(mirror);
     objARear.AlignObject(obj);
+    objARear.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectsRear(Object3D** objects, uint8_t objectCount, float rotation, float margin, bool mirror){
@@ -268,6 +273,7 @@ void ProtogenProject::AlignObjectsRear(Object3D** objects, uint8_t objectCount, 
     objARear.SetEdgeMargin(margin);
     objARear.SetMirrorX(mirror);
     objARear.AlignObjects(objects, objectCount);
+    objARear.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectNoScaleRear(Object3D* obj, float rotation, float margin, bool mirror){
@@ -275,6 +281,7 @@ void ProtogenProject::AlignObjectNoScaleRear(Object3D* obj, float rotation, floa
     objARear.SetEdgeMargin(margin);
     objARear.SetMirrorX(mirror);
     objARear.AlignObjectNoScale(obj);
+    objARear.SetMirrorX(mirror);
 }
 
 void ProtogenProject::AlignObjectsNoScaleRear(Object3D** objects, uint8_t objectCount, float rotation, float margin, bool mirror){
@@ -282,6 +289,20 @@ void ProtogenProject::AlignObjectsNoScaleRear(Object3D** objects, uint8_t object
     objARear.SetEdgeMargin(margin);
     objARear.SetMirrorX(mirror);
     objARear.AlignObjectsNoScale(objects, objectCount);
+    objARear.SetMirrorX(mirror);
+}
+
+
+ObjectAlign* ProtogenProject::GetObjectAlign(){
+    return &objAOther;
+}
+
+ObjectAlign* ProtogenProject::GetObjectAlignFace(){
+    return &objA;
+}
+
+ObjectAlign* ProtogenProject::GetObjectAlignRear(){
+    return &objARear;
 }
 
 
@@ -528,11 +549,18 @@ ProtogenProject::ProtogenProject(CameraManager* cameras, Controller* controller,
 
     cameraSize = camMax - camMin;
 
-    sA.SetSize(cameraSize);
-    sA.SetPosition(cameraSize / 2.0f);
+    //sA.SetSize(cameraSize);
+    //sA.SetPosition(cameraSize / 2.0f);
 
-    oSC.SetSize(cameraSize);
-    oSC.SetPosition(cameraSize / 2.0f);
+    //oSC.SetSize(cameraSize);
+    //oSC.SetPosition(cameraSize / 2.0f);
+
+    
+    sA.SetSize(Vector2D(220.0f, 72.0f));
+    sA.SetPosition(Vector2D());
+
+    oSC.SetSize(Vector2D(220.0f, 72.0f));
+    oSC.SetPosition(Vector2D());
 
     
     //sA.SetSize(Vector2D(220.0f, 72.0f));
