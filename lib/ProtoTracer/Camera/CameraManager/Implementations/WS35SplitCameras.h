@@ -9,7 +9,7 @@
 class WS35SplitCameraManager : public CameraManager {
 private:
     CameraLayout cameraLayout = CameraLayout(CameraLayout::ZForward, CameraLayout::YUp);
-    Transform camRghtTransform = Transform(Vector3D(), Vector3D(0, 0, -500.0f), Vector3D(1, 1, 1));
+    Transform camRghtTransform = Transform(Vector3D(), Vector3D(-170, 0, -500.0f), Vector3D(1, 1, 1));
     Transform camLeftTransform = Transform(Vector3D(), Vector3D(0, 0, -500.0f), Vector3D(1, 1, 1));
     PixelGroup<571> camRghtPixels = PixelGroup<571>(WS35Pixels, IPixelGroup::ZEROTOMAX);
     PixelGroup<571> camLeftPixels = PixelGroup<571>(WS35Pixels, IPixelGroup::MAXTOZERO);
