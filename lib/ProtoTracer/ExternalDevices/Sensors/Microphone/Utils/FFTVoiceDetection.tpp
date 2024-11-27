@@ -11,6 +11,22 @@ float FFTVoiceDetection<peakCount>::GetViseme(MouthShape viseme) {
 }
 
 template <size_t peakCount>
+uint8_t FFTVoiceDetection<peakCount>::GetMouthShape() {
+    float max = 0.0f;
+    uint8_t ind = 10;
+
+    for (uint8_t i = 0; i < visemeCount; i++) {
+        if (max < *visRatios[i]) {
+            max = *visRatios[i];
+            ind = i;
+        }
+    }
+
+    return ind;
+}
+
+
+template <size_t peakCount>
 void FFTVoiceDetection<peakCount>::PrintVisemes() {
     float max = 0.0f;
     uint8_t ind = 10;

@@ -67,6 +67,7 @@ public:
     void PrintVisemes();
     void ResetVisemes();
     void Update(float* peaks, float maxFrequency);
+    uint8_t GetMouthShape();
 };
 
 #include "FFTVoiceDetection.tpp"
