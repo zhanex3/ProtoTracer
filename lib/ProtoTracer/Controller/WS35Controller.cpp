@@ -18,9 +18,26 @@ void WS35Controller::Display(){
     IPixelGroup* camRghtPixels = cameras->GetCameras()[0]->GetPixelGroup();
     IPixelGroup* camLeftPixels = cameras->GetCameras()[1]->GetPixelGroup();
 
+    IPixelGroup* rightSideFinPixels = cameras->GetCameras()[2]->GetPixelGroup();
+    IPixelGroup* leftSideFinPixels = cameras->GetCameras()[3]->GetPixelGroup();
+    IPixelGroup* rightSideDisplayPixels = cameras->GetCameras()[4]->GetPixelGroup();
+    IPixelGroup* leftSideDisplayPixels = cameras->GetCameras()[5]->GetPixelGroup();
+
     for (int i = 0; i < 571; i++){
         *camLeftPixels->GetColor(i) = camLeftPixels->GetColor(i)->Scale(brightness);
         *camRghtPixels->GetColor(i) = camRghtPixels->GetColor(i)->Scale(brightness);
+
+        if (i < 19)
+        {
+            *rightSideDisplayPixels->GetColor(i) = rightSideDisplayPixels->GetColor(i)->Scale(accentBrightness);
+            *leftSideDisplayPixels->GetColor(i) = leftSideDisplayPixels->GetColor(i)->Scale(accentBrightness);
+        }
+
+        if (i < 17)
+        {
+            *rightSideFinPixels->GetColor(i) = rightSideFinPixels->GetColor(i)->Scale(accentBrightness);
+            *leftSideFinPixels->GetColor(i) = leftSideFinPixels->GetColor(i)->Scale(accentBrightness);
+        }
     }
 
     for (int i = 0; i < 571; i++) {
@@ -35,6 +52,18 @@ void WS35Controller::Display(){
 
             leds.setPixel(i + 346 * 6 - 346, camLeftPixels->GetColor(offset)->R, camLeftPixels->GetColor(offset)->G, camLeftPixels->GetColor(offset)->B);//Pin 8
             leds.setPixel(i + 346 * 7 - 346, camRghtPixels->GetColor(i)->R, camRghtPixels->GetColor(i)->G, camRghtPixels->GetColor(i)->B);//Pin 8
+        }
+
+        if (i < 19)
+        {
+            leds.setPixel(i + 346 * 3, leftSideDisplayPixels->GetColor(i)->R, leftSideDisplayPixels->GetColor(i)->G, leftSideDisplayPixels->GetColor(i)->B);
+            leds.setPixel(i + 346 * 1, rightSideDisplayPixels->GetColor(i)->R, rightSideDisplayPixels->GetColor(i)->G, rightSideDisplayPixels->GetColor(i)->B);
+        }
+
+        if (i < 17)
+        {  
+            leds.setPixel(i + 346 * 2, leftSideFinPixels->GetColor(i)->R, leftSideFinPixels->GetColor(i)->G, leftSideFinPixels->GetColor(i)->B);
+            leds.setPixel(i + 346 * 0, rightSideFinPixels->GetColor(i)->R, rightSideFinPixels->GetColor(i)->G, rightSideFinPixels->GetColor(i)->B);
         }
     }
     
