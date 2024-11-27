@@ -3,9 +3,9 @@
 void HorizontalRainbow::Update(float ratio) {
     positionOffset -= 1.0f;
 
-    gNoiseMat.SetRotationAngle(90.0f);
+    gNoiseMat.SetRotationAngle(180.0f);
     gNoiseMat.SetPositionOffset(Vector2D(positionOffset, 0.0f));
-    gNoiseMat.SetGradientPeriod(96.0f);
+    gNoiseMat.SetGradientPeriod(480.0f);
 }
 
 Material* HorizontalRainbow::GetMaterial() {
