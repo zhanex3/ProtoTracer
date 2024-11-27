@@ -156,6 +156,29 @@ RGBColor Rasterizer::CheckRasterPixel(Triangle2D** triangles, int numTriangles, 
     return color;
 }
 
+void Rasterizer::TwoDRasterize(Scene* scene, CameraBase* camera, int cameraNum) {
+    int objectNum = 0;
+    if(cameraNum > 1 && cameraNum < 4)
+    {
+        objectNum = 1;
+    }
+    else if(cameraNum > 3 && cameraNum < 6)
+    {
+        objectNum = 2;
+    }
+        for (unsigned int i = 0; i < camera->GetPixelGroup()->GetPixelCount(); i++) {
+            Vector2D pixelRay = camera->GetPixelGroup()->GetCoordinate(i);
+            Vector3D pixelRay3D = Vector3D(pixelRay.X, pixelRay.Y, 0) + camera->GetTransform()->GetPosition();
+
+            //Cameras 0 and 1 load the proto face, so we minus one for the objects.
+            RGBColor color = scene->GetObjects()[objectNum]->GetMaterial()->GetRGB(pixelRay3D, Vector3D(), Vector3D());
+
+            camera->GetPixelGroup()->GetColor(i)->R = color.R;
+            camera->GetPixelGroup()->GetColor(i)->G = color.G;
+            camera->GetPixelGroup()->GetColor(i)->B = color.B;
+        }
+    }
+
 void Rasterizer::Rasterize(Scene* scene, CameraBase* camera) {
     if (camera->Is2D()) {
         for (unsigned int i = 0; i < camera->GetPixelGroup()->GetPixelCount(); i++) {

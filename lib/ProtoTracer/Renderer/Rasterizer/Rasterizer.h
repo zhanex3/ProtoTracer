@@ -17,5 +17,6 @@ private:
 
 public:
     static void Rasterize(Scene* scene, CameraBase* camera);
+    static void TwoDRasterize(Scene* scene, CameraBase* camera, int cameraNum);
 
 };
