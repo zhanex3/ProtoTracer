@@ -11,6 +11,9 @@ bool APDS9960::didBegin = false;
 bool APDS9960::isBright = false;
 bool APDS9960::isProx = false;
 
+uint16_t previousProximity;
+int boopCounter = 0;
+
 bool APDS9960::Initialize(uint8_t threshold) {
     APDS9960::threshold = threshold;
 
@@ -41,15 +44,42 @@ bool APDS9960::Initialize(uint8_t threshold) {
 }
 
 bool APDS9960::isBooped() {
+    Serial.print("Previous reading: ");
+    Serial.println(previousProximity);
+    previousProximity = proximity;
     GetValue();
+    Serial.print("New reading: ");
+    Serial.println(proximity);
+
+    Serial.print("Boop Counts: ");
+    Serial.println(boopCounter);
 
     if (timeStep.IsReady()) {
         minimum = minF.Filter(proximity);
     }
 
-    return proximity > minimum + threshold;
+    //return proximity > minimum + threshold;
+    if(proximity > threshold)
+    {
+        if(previousProximity == 0 || previousProximity <= threshold)
+        {
+            boopCounter ++;
+        }
+        return true;
+    }
+    else
+        return false;
 }
 
+
+void APDS9960::resetBoopCounter() {
+    boopCounter = 0;
+}
+
+int APDS9960::getBoopCounter() {
+    return boopCounter;
+}
+    
 void APDS9960::ResetI2CBus() {
     Wire.end(); // Disable the I2C hardware
     delay(10);  // Wait a bit

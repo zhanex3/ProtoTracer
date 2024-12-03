@@ -24,4 +24,6 @@ public:
     static void ResetI2CBus();
     static uint8_t GetValue();
     static uint16_t GetBrightness();
+    static void resetBoopCounter();
+    static int getBoopCounter();
 };

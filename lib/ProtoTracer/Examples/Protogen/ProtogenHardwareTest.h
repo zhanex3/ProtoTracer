@@ -6,6 +6,7 @@
 #include <Adafruit_SSD1306.h>
 #include <APDS9930.h>
 #include "Adafruit_NeoTrellis.h"
+#include "../../ExternalDevices/Sensors/Microphone/MicrophoneFourier_MAX9814.h"
 
 class HardwareTest{
 private:
@@ -257,7 +258,28 @@ private:
     }
 
 public:
-    static void TestMicrophone(){
+    static void TestMicrophone(int pin){
+        if(!MicrophoneFourier::IsInitialized())
+        {
+            MicrophoneFourier::Initialize(pin, 8000, 10.0f, 120.0f);//8KHz sample rate, 50dB min, 120dB max
+            delay(0);
+            Serial.print("Initial reading: ");
+        Serial.printf("%.6f \n", MicrophoneFourier::GetFourierFiltered());
+        Serial.printf("GetCurrentMagnitude: %.6f \n", MicrophoneFourier::GetCurrentMagnitude());
+        }
+
+MicrophoneFourier::Update();
+if(MicrophoneFourier::GetCurrentMagnitude() > 0.05f){
+        Serial.print("reading: ");
+        Serial.printf("%.6f \n", MicrophoneFourier::GetFourierFiltered());
+        Serial.printf("GetCurrentMagnitude: %.6f \n", MicrophoneFourier::GetCurrentMagnitude());
+    }
+        //  delay(0);
+        // MicrophoneFourier::Update();
+        // Serial.print("Updated reading: ");
+        // Serial.printf("%.6f \n", MicrophoneFourier::GetFourierFiltered());
+        // Serial.printf("GetCurrentMagnitude: %.6f \n", MicrophoneFourier::GetCurrentMagnitude());
+        //  delay(0);
 
     }
 

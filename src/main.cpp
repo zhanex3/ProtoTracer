@@ -6,14 +6,19 @@
 
 //#include "Examples\Commissions\UnicornZhenjaAnimation.h"
 //#include "Examples/Protogen/ProtogenHUB75Project.h"
-#include "Examples/Protogen/ProtogenWS35Project.h"
+//#include "Examples/Protogen/ProtogenWS35Project.h"
 //#include "Examples\VerifyEngine.h"
-
 
 //#include "Examples/Commissions/ArrowAnimation.h"
 //#include "../lib/ProtoTracer/Examples/Protogen/BetaProject.h"
 
-ProtogenWS35Project project;
+
+// #include "Examples/Protogen/ProtogenWS35Project.h"
+// ProtogenWS35Project project;
+
+#include "../lib/ProtoTracer/raas_source/project/RaasProject.h"
+RaasProject project;
+
 
 void setup() {
     Serial.begin(115200);
@@ -21,13 +26,15 @@ void setup() {
     
     #ifndef TESTHARDWARE
     project.Initialize();
-    delay(100);
+    delay(500);
     #else
     while(true){
-        HardwareTest::ScanDevices();
-        HardwareTest::TestNeoTrellis();
+        Serial.println("Hardware test...");
+       // HardwareTest::ScanDevices();
+       // HardwareTest::TestNeoTrellis();
         HardwareTest::TestBoopSensor();
-        HardwareTest::TestHUD();
+      //  HardwareTest::TestHUD();
+      //  HardwareTest::TestMicrophone(15);
     }
     #endif
 }
@@ -41,5 +48,5 @@ void loop() {
 
     project.Display();
 
-    project.PrintStats();
+   // project.PrintStats();
 }
