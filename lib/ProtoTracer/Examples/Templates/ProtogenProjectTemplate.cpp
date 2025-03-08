@@ -548,7 +548,7 @@ ProtogenProject::ProtogenProject(CameraManager* cameras, Controller* controller,
 void ProtogenProject::Initialize() {
     controller->Initialize();
 
-    boop.Initialize(5);
+    boop.Initialize(25);
 
     hud.Initialize();
 

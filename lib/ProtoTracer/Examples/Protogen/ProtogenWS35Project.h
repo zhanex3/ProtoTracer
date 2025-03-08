@@ -84,7 +84,7 @@ private:
     }
 
 public:
-    ProtogenWS35Project() : ProtogenProject(&cameras, &controller, 1, Vector2D(), Vector2D(192.0f, 105.0f), 22, 23, 9){
+    ProtogenWS35Project() : ProtogenProject(&cameras, &controller, 1, Vector2D(), Vector2D(192.0f, 105.0f), 22, 0, 9){
         scene.AddObject(pM.GetObject());
 
         pM.GetObject()->SetMaterial(GetFaceMaterial());

@@ -83,7 +83,7 @@ void Menu::SetMaxEntries() {
 void Menu::SetDefaultEntries() {
     // Define your default entries here
     MenuHandler<menuCount>::SetDefaultValue(Faces, 0);
-    MenuHandler<menuCount>::SetDefaultValue(Bright, 3);
+    MenuHandler<menuCount>::SetDefaultValue(Bright, 1);
     MenuHandler<menuCount>::SetDefaultValue(AccentBright, 5);
     MenuHandler<menuCount>::SetDefaultValue(Microphone, 1);
     MenuHandler<menuCount>::SetDefaultValue(MicLevel, 5);
