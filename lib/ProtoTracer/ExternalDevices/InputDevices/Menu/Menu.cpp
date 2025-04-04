@@ -223,7 +223,7 @@ void Menu::Update(float ratio) {
 
     float xPosition = dampedSpringX.Calculate(target, 0.25f);
 
-    showMenuRatio = dampedSpringShow.Calculate(menuTarget, 0.25f);
+    showMenuRatio = dampedSpringShow.Calculate(100.0f, 0.25f);
     material.Update(ratio);
 
     float ratioX = sinf(ratio * Mathematics::MPI * 2.0f * wiggleSpeedX) * 4.0f;
